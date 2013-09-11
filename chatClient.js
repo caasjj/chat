@@ -76,7 +76,7 @@ var chatterBox = (function (timerPeriod) {
                         });
 
                         $('li.chat').remove();
-                        $($newMessages).appendTo('ul.messages');
+                        $($newMessages.slice(-10)).appendTo('ol.messages');
 
                     };
                     break;
@@ -90,16 +90,19 @@ var chatterBox = (function (timerPeriod) {
                             data: {
                                 order: 'createdAt'
                             },
-                            dataType: 'json'
+                            dataType: 'json',
+                            timeout: 2500
                         }).then(function (retrievedData) {
                                 var receivedMessages = retrievedData.results;
                                 var ar = [];
                                 receivedMessages.forEach(function (e, i) {
                                     ar.push('(' + e.createdAt.substring(e.createdAt.indexOf('T') + 1, e.createdAt.length - 1) + ') ' + e.text);
                                 });
+                                $("#fetchStatus").removeClass('statusError').addClass('statusOk').html('Ok');
                                 fetchCallback(ar);
                             }, function (error) {
                                 console.warn('ERROR ON FETCH: "' + error.statusText + '"');
+                                $("#fetchStatus").removeClass('statusOk').addClass('statusError').html('Timeout');
                             });
                     };
                     break;
@@ -114,13 +117,16 @@ var chatterBox = (function (timerPeriod) {
                         $.ajax({
                             url: 'https://api.parse.com/1/classes/chats',
                             type: 'POST',
+                            timeout: 2500,
                             data: JSON.stringify({
                                 text: currentUser + ': ' + messageToSend
                             })
                         }).then(function (confirmation) {
                                 console.log('Ajax Sent. Resource ' + confirmation.objectId + ' created at ' + confirmation.createdAt);
+                                $("#sendStatus").removeClass('statusError').addClass('statusOk').html('Ok');
                             }, function (error) {
                                 console.warn('ERROR ON SEND: "' + error.statusText + '"');
+                                $("#sendStatus").removeClass('statusOk').addClass('statusError').html('Timeout');
                             });
                     };
                     break;
@@ -151,6 +157,11 @@ var chatterBox = (function (timerPeriod) {
 
     //  selectively override any of the Chat methods
     overRideDefaults(['display', 'fetch', 'send']);
+
+    // Start up the first fetch
+    Chat.fetch(function (fetchedMessages) {
+        Chat.display(fetchedMessages);
+    });
 
     // Start everything up
     startMonitor(timerPeriod);

@@ -16,13 +16,17 @@
         <button id="autochat">autochat</button>
     </div>
 
-    <ul class="messages">
+    <ol class="messages">
         <!-- once you save this code to a local `.html()` file, you can delete these 3 fake, hard-coded li elements -->
         <li>Mysterious_guide: Hey there! Let's build a chat application.</li>
         <li>Mysterious_guide: Right now, there's actually no functionality in this chat client--it's just an inert page
             full
             of pre-written HTML that's being rendered by your browser.
         <li>Mysterious_guide: But you can fix that--try looking at the page source to see how this page works.</li>
+    </ol>
+    <ul>
+        <p class="status">Receive: <span id="fetchStatus"></span></p>
+        <p class="status">Send: <span id="sendStatus"></span></p>
     </ul>
 </div>
 <script type="text/javascript" src="chatClient.js"></script>
