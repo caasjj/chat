@@ -1,0 +1,47 @@
+body {
+    background: white;
+}
+div.container {
+    margin: auto;
+    width: 720px;
+
+}
+
+input.draft {
+    margin-left: 50px;
+    margin-bottom: 0px;
+    width: 500px;
+}
+
+.btn-grp {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    margin-left: 300px;
+}
+
+li {
+    background: skyblue;
+    list-style-type: none;
+    padding: 2px 5px;
+    width: 650px;
+    margin: auto;
+
+}
+
+li.isEcho {
+    background: limegreen;
+}
+
+li.isRobo {
+    background: lightgray;
+    color: #686868;
+}
+
+.activeBtn {
+    background: red;
+}
