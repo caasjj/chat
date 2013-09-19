@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var caasjj = "Change made by caasjj";
 var chatterBox = (function (timerPeriod) {
 
     timerPeriod = timerPeriod || 3000;
