@@ -7,6 +7,8 @@
  */
 
 var caasjj = "Change made by caasjj";
+var wherati = "Added by wherati";
+
 var chatterBox = (function (timerPeriod) {
 
     timerPeriod = timerPeriod || 3000;
