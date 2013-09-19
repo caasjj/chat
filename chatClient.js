@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var wherati = "Added by wherati";
+
 var chatterBox = (function (timerPeriod) {
 
     timerPeriod = timerPeriod || 3000;
